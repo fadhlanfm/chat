@@ -5,6 +5,7 @@ const messageInput = document.getElementById("message-input")
 const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
+const socket = io("http://localhost:3000")
 
 form.addEventListener("submit", event => {
   event.preventDefault()
