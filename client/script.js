@@ -6,8 +6,13 @@ const roomInput = document.getElementById("room-input")
 const form = document.getElementById("form")
 
 const socket = io("http://localhost:3000")
+
 socket.on("connect", () => {
   displayMessage(`You connected with id: ${socket.id}`)
+})
+
+socket.on("receive-message", message => {
+  displayMessage(message)
 })
 
 socket.emit("custom-event", 10, "Hi", { a: "a" })
