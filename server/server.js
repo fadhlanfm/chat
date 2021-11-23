@@ -14,7 +14,8 @@ io.on("connection", socket => {
     }
   })
 
-  socket.on("join-room", room => {
+  socket.on("join-room", (room, cb) => {
     socket.join(room)
+    cb(`joined ${room}`)
   })
 })
