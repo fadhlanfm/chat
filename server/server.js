@@ -8,8 +8,21 @@ const io = require("socket.io")(3000, {
 
 const userIo = io.of("/user")
 userIo.on("connection", socket => {
-  console.log("connected to user namespace")
+  console.log("connected to user namespace with username " + socket.username)
 })
+
+userInfo.use((socket, next) => {
+  if (socket.handshake.auth.token) {
+    socket.username = getUsernameFromToken(socket.handshake.auth.token)
+    next()
+  } else {
+    next(new Error("Please send token"))
+  }
+})
+
+function getUsernameFromToken(string) {
+  return string
+}
 
 io.on("connection", socket => {
   console.log(socket.id)
