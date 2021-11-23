@@ -10,6 +10,8 @@ socket.on("connect", () => {
   displayMessage(`You connected with id: ${socket.id}`)
 })
 
+socket.emit("custom-event", 10, "Hi", { a: "a" })
+
 form.addEventListener("submit", event => {
   event.preventDefault()
   const message = messageInput.value
