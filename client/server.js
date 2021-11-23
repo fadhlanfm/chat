@@ -22,6 +22,7 @@ form.addEventListener("submit", event => {
   }
 
   displayMessage(message)
+  socket.emit("send-message", message)
 
   messageInput.value = ""
 })
